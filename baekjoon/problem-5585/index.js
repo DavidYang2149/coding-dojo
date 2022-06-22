@@ -17,46 +17,21 @@ JOI잡화점에는 잔돈으로 500엔, 100엔, 50엔, 10엔, 5엔, 1엔이 충�
 
 */
 
-// var fs = require('fs');
-// var input = fs.readFileSync('/dev/stdin').toString().split(' ');
-// var a = parseInt(input[0]);
+// const fs = require('fs');
+// const input = fs.readFileSync('/dev/stdin').toString().split(' ');
+// const a = parseInt(input[0]);
 
 function solution(price) {
   let answer = 0;
+
   let money = 1000;
   let left = money - price;
 
-  while (left !== 0) {
-    if (left / 500 >= 1) {
-      answer += parseInt(left / 500);
-      left = left % 500;
-    }
-    
-    if (left / 100 >= 1) {
-      answer += parseInt(left / 100);
-      left = left % 100;
-    }
-
-    if (left / 50 >= 1) {
-      answer += parseInt(left / 50);
-      left = left % 50;
-    }
-
-    if (left / 10 >= 1) {
-      answer += parseInt(left / 10);
-      left = left % 10;
-    }
-
-    if (left / 5 >= 1) {
-      answer += parseInt(left / 5);
-      left = left % 5;
-    }
-
-    if (left / 1 >= 1) {
-      answer += parseInt(left / 1);
-      left = left % 1;
-    }
-  }
+  const coins = [500, 100, 50, 10, 5, 1];
+  coins.forEach((coin) => {
+    answer += parseInt(left / coin);
+    left = left % coin;
+  });
 
   return answer;
 }
