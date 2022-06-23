@@ -1,1 +1,1 @@
-# coding-dojo-javascript
+# coding-dojo

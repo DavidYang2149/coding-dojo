@@ -1,5 +1,5 @@
 {
-  "name": "coding-dojo-javascript",
+  "name": "coding-dojo",
   "version": "1.0.0",
   "scripts": {
     "test": "jest"
