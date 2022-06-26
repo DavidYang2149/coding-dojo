@@ -42,7 +42,7 @@ function match(keyword, contents, count = 0) {
     return [contents, count];
   }
   
-  const result = contents.split(keyword);
+  const result = contents.split(keyword).filter(x => x !== '');
   
   if (contents.length !== result.length) {
     count += 1;
