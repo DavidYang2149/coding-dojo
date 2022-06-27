@@ -1,11 +1,7 @@
 const { solution, copy, match } = require('./index');
 
 test('test', () => {
-  const input = `
-  xy0z
-  zzz0yyy0xxx
-  `;
-  expect(solution(input)).toBe(10);
+  expect(solution('xy0z', 'zzz0yyy0xxx')).toBe(10);
 });
 
 test('copy', () => {
@@ -20,5 +16,5 @@ test('match', () => {
   const content = 'aabccabc';
   const count = 0;
   
-  expect(match(input, content, count)).toStrictEqual([['a', 'c'], 1]);
+  expect(match(input, [content], count)).toStrictEqual([['a', 'c'], 2]);
 });
