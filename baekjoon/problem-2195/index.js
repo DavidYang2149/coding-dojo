@@ -23,13 +23,60 @@ S와 P가 주어졌을 때, 필요한 copy 함수의 최소 사용횟수를 구�
 // const fs = require('fs');
 // const input = fs.readFileSync('/dev/stdin').toString().split(' ');
 // const a = input[0];
+// const b = input[1];
 
-function solution(price) {
+function copy(words) {
+  const result = [];
+
+  for (let i = words.length; i > 0; i--) {
+    for (let j = 0;  j + i <= words.length; j++) {
+      result.push(words.substr(j, i));
+    }
+  }
+
+  return result;
+}
+
+function match(keyword, contents, count = 0) {
+  if (contents.length === 0) {
+    return [contents, count];
+  }
+  
+  // const before = JSON.parse(JSON.stringify(contents));
+  
+  // const result = contents.map(x => x.split(keyword)).flat().filter(x => x !== '');
+  const result = contents.map(x => x.split(keyword)).flat().filter(x => x !== '');
+  const resultCount = contents.reduce((acc, x) => acc + x.split(keyword).length - 1, 0);
+  
+  count += resultCount;
+  // if (JSON.stringify(before) !== JSON.stringify(result)) {
+  //   count += 1;
+  // }
+  
+  return [result, count];
+}
+
+function solution(s, p) {
   let answer = 0;
+
+  // S를 순차적으로 돌아서 P의 값을 제거한다.
+  // 1. S를 가잔 긴 길이부터 점점 짧게 줄인다(loop)
+  const keywords = copy(s);
+  console.log('keywords', keywords);
+
+  // 2. P의 값과 일치하면 해당 값을 쪼갠다.
+  keywords.reduce((cur, acc) => {
+    // console.log('keyword: ', acc);
+    // console.log('leftWords: ', cur);
+    // console.log('answer: ', answer);
+    const [leftWords, count] = match(acc, cur);
+    answer += count;
+    return leftWords;
+  }, [p]);
 
   return answer;
 }
 
-module.exports = solution;
+module.exports = { solution, copy, match };
 
-// console.log(solution(a));
+// console.log(solution(a, b));
