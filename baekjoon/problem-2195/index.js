@@ -65,13 +65,18 @@ function solution(s, p) {
   // console.log('keywords', keywords);
 
   // 2. P의 값과 일치하면 해당 값을 쪼갠다.
-  keywords.reduce((cur, acc) => {
+  keywords.reduce((acc, cur) => {
     // console.log('keyword: ', acc);
     // console.log('leftWords: ', cur);
     // console.log('answer: ', answer);
-    const [leftWords, count] = match(acc, cur);
+    const countArr = [...acc];
+    // console.log(countArr)
+    let count = countArr.reduce((a, x) => { return a + x.split(cur).length - 1 }, 0);
     answer += count;
-    return leftWords;
+
+    const result = acc.map(x => x.split(cur)).flat().filter(x => x !== '');
+
+    return result;
   }, [p]);
 
   return answer;
