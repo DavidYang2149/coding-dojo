@@ -19,15 +19,29 @@ Project Teams
 */
 
 // const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().split(' ');
-// const a = input[0];
+// const input = fs.readFileSync('/dev/stdin').toString().split('\n');
+// const a = parseInt(input[0]);
+// const b = input[1].split(' ').map(x => parseInt(x));
 
 function solution(team, total) {
   let answer = 0;
+  let arr = [];
 
+  const totalSorted = [...total.sort((a, b) => a - b)];
+
+  for (let i = 0; i < (total.length / 2); i++) {
+    let add = 0;
+
+    add += totalSorted.shift();
+    add += totalSorted.pop();
+
+    arr.push(add);
+  }
+
+  answer = Math.min(...arr);
   return answer;
 }
 
-module.exports = solution;
+// console.log(solution(a, b));
 
-// console.log(solution(a));
+module.exports = solution;
