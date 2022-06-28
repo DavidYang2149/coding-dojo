@@ -21,7 +21,7 @@ S와 P가 주어졌을 때, 필요한 copy 함수의 최소 사용횟수를 구�
 */
 
 // const fs = require('fs');
-// const input = fs.readFileSync('/dev/stdin').toString().split(' ');
+// const input = fs.readFileSync('/dev/stdin').toString().split('\n');
 // const a = input[0];
 // const b = input[1];
 
@@ -62,7 +62,7 @@ function solution(s, p) {
   // S를 순차적으로 돌아서 P의 값을 제거한다.
   // 1. S를 가잔 긴 길이부터 점점 짧게 줄인다(loop)
   const keywords = copy(s);
-  console.log('keywords', keywords);
+  // console.log('keywords', keywords);
 
   // 2. P의 값과 일치하면 해당 값을 쪼갠다.
   keywords.reduce((cur, acc) => {
@@ -77,6 +77,6 @@ function solution(s, p) {
   return answer;
 }
 
-module.exports = { solution, copy, match };
-
 // console.log(solution(a, b));
+
+module.exports = { solution, copy, match };
