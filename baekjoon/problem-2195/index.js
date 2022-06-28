@@ -28,7 +28,7 @@ S와 P가 주어졌을 때, 필요한 copy 함수의 최소 사용횟수를 구�
 function copy(words) {
   const result = [];
 
-  for (let i = 1; i <= words.length; i++) {
+  for (let i = words.length; i > 0; i--) {
     for (let j = 0;  j + i <= words.length; j++) {
       result.push(words.substr(j, i));
     }

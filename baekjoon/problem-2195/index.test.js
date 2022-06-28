@@ -6,7 +6,7 @@ test('test', () => {
 
 test('copy', () => {
   const input = 'abc';
-  const result = ['a', 'b', 'c', 'ab', 'bc', 'abc'];
+  const result = ['abc', 'ab', 'bc', 'a', 'b', 'c'];
   
   expect(copy(input)).toStrictEqual(result);
 });
