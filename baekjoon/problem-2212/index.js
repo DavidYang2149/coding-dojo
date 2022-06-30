@@ -26,7 +26,37 @@ https://www.acmicpc.net/problem/2212
 
 function solution(n, k, arr) {
   let answer = 0;
+  const sortedArr = arr.sort((a, b) => a - b);
+  console.log('1', sortedArr)
+
+  const set = new Set([...sortedArr]);
+  const setArr = Array.from(set);
+  console.log('2', setArr)
+
   
+  if (n <= k) {
+    return 0;
+  }
+  
+  const distanceArr = [];
+
+  setArr.reduce((acc, cur) => {
+    if (acc === 0) {
+      return cur;
+    }
+
+    const distance = cur - acc;
+    distanceArr.push(distance);
+    return cur;
+  }, 0);
+
+  console.log('3', distanceArr)
+
+  const sortedDistanceArr = distanceArr.sort((a, b) => a - b);
+  console.log('final', sortedDistanceArr)
+
+  answer = sortedDistanceArr.slice(0, k).reduce((acc, cur) => acc + cur, 0);
+
   return answer;
 }
 
