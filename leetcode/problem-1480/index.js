@@ -38,6 +38,12 @@ Constraints:
 var runningSum = function(nums) {
   const answer = [];
 
+  nums.reduce((acc, cur) => {
+    const total = acc + cur;
+    answer.push(total);
+    return total;
+  }, 0);
+
   return answer;
 };
 
