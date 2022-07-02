@@ -38,7 +38,21 @@ s and t consist of any valid ascii character.
  * @return {boolean}
  */
     var isIsomorphic = function(s, t) {
-    
-};
+        const objS = {};
+        const objT = {};
+        for (let i = 0; i < s.length; i++) {
+            const a = s.charAt(i);
+            const b = t.charAt(i);
+
+            if (objS[a] !== objT[b]) {
+                return false;
+            }
+
+            objS[a] = i + 1;
+            objT[b] = i + 1;
+        }
+        
+        return true;
+    };
 
 module.exports = isIsomorphic;
