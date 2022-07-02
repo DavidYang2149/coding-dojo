@@ -35,7 +35,15 @@ Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 
  * @return {boolean}
  */
     var isSubsequence = function(s, t) {
-    
-};
+        let index = 0;
+
+        for (let i = 0; i < t.length; i++) {
+            if (index === s.length) break;
+
+            if (s[index] === t[i]) index += 1
+        }
+
+        return index === s.length ? true : false;
+    };
 
 module.exports = isSubsequence;
