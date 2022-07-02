@@ -48,7 +48,21 @@ Constraints:
  * @return {number}
  */
 var pivotIndex = function(nums) {
-    const answer = 0;
+    let answer = -1;
+
+    for (let i = 0; i < nums.length; i++) {
+        const arr = [...nums];
+
+        arr.splice(i, 1);
+
+        const rightSide = arr.splice(i).reduce((acc, cur) => { return acc + cur }, 0);
+        const leftSide = arr.reduce((acc, cur) => { return acc + cur }, 0);
+
+        if (rightSide === leftSide) {
+            answer = i;
+            break;
+        }
+    }
 
     return answer;
 };
