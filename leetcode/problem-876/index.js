@@ -49,7 +49,19 @@ The number of nodes in the list is in the range [1, 100].
  * @return {ListNode}
  */
 var middleNode = function(head) {
-    
+  let currentNode = head;
+  let length = 0;
+
+  while (currentNode !== null) {
+    length++;
+    currentNode = currentNode.next;
+  }
+
+  for (let i = 0; i < parseInt(length / 2); i++) { 
+    head = head.next;
+  }
+  
+  return head;
 };
 
 module.exports = middleNode;
