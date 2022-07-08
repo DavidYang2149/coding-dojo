@@ -54,7 +54,25 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
  * @return {ListNode}
  */
 var detectCycle = function(head) {
+  let tortoise = head, hare = head;
     
+    while(hare && hare.next) {
+        tortoise = tortoise.next;
+        hare = hare.next.next;
+
+        if(tortoise === hare) {
+            tortoise = head;
+
+            while(tortoise !== hare) {
+                tortoise = tortoise.next;
+                hare = hare.next;
+            }
+
+            return tortoise;
+        }
+    }
+
+    return null;
 };
 
 module.exports = detectCycle;
