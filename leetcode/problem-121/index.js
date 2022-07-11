@@ -36,10 +36,14 @@ Constraints:
  */
 var maxProfit = function(prices) {
   let profit = 0;
+  let minStock = prices[0];
   
   prices.forEach((stock, index) => {
-    for (let i = index + 1; i < prices.length; i++) {
-      const currentProfit = prices[i] - stock;
+    if (stock < minStock) {
+      minStock = stock;
+    } else {
+      let currentProfit = stock - minStock;
+
       profit = currentProfit > profit ? currentProfit : profit;
     }
   });
