@@ -32,7 +32,29 @@ s consists of lowercase and/or uppercase English letters only.
  * @return {number}
  */
 var longestPalindrome = function(s) {
+    const words = {};
     
+    s.split('').forEach((word) => {
+      words[word] = (words[word] | 0) + 1
+    });
+    
+    let result = 0;
+    
+    for (word in words) {
+      const count = words[word];
+
+      if (result % 2 === 0 && count % 2 === 1) {
+        result += 1;
+      }
+
+      if (count % 2 === 0) {
+        result += count;
+      } else {
+        result += count - 1;
+      }
+    }
+
+    return result;
 };
 
 module.exports = longestPalindrome;
