@@ -35,7 +35,16 @@ Constraints:
  * @return {number}
  */
 var maxProfit = function(prices) {
+  let profit = 0;
   
+  prices.forEach((stock, index) => {
+    for (let i = index + 1; i < prices.length; i++) {
+      const currentProfit = prices[i] - stock;
+      profit = currentProfit > profit ? currentProfit : profit;
+    }
+  });
+  
+  return profit;
 };
 
 module.exports = maxProfit;
