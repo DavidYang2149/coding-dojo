@@ -34,33 +34,25 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
 */
 
 /**
- * @param {string} s
- * @return {number}
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
  */
-var longestPalindrome = function(s) {
-    const words = {};
-    
-    s.split('').forEach((word) => {
-      words[word] = (words[word] | 0) + 1
-    });
-    
-    let result = 0;
-    
-    for (word in words) {
-      const count = words[word];
 
-      if (result % 2 === 0 && count % 2 === 1) {
-        result += 1;
-      }
+/**
+ * @param {Node|null} root
+ * @return {number[]}
+ */
+var preorder = function(root, answer = []) {
+  if (!root) { return answer };
 
-      if (count % 2 === 0) {
-        result += count;
-      } else {
-        result += count - 1;
-      }
-    }
-
-    return result;
+  answer.push(root.val);
+  for (let child of root.children) { preorder(child, answer); }
+  
+  return answer;
 };
 
-module.exports = longestPalindrome;
+
+module.exports = preorder;
