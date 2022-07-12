@@ -50,7 +50,39 @@ The number of nodes in the tree is in the range [0, 2000].
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-  
+  if (root === null) {
+    return [];
+  }
+
+  let result = [];
+  let queue = [];
+
+  queue.push(root);
+
+  while (queue.length > 0) {
+    let temp = [];
+    let tempSize = queue.length;
+
+    while (tempSize > 0) {
+      let currentNode = queue.shift();
+
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+
+      temp.push(currentNode.val);
+
+      tempSize--;
+    }
+
+    result.push(temp);
+  }
+
+  return result;
 };
 
 module.exports = levelOrder;
