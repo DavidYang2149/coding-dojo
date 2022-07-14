@@ -37,7 +37,7 @@ nums is sorted in ascending order.
  * @return {number}
  */
 var search = function(nums, target) {
-  
+  return nums.sort((a, b) => a - b).findIndex((value) => value === target);
 };
 
 module.exports = search;
