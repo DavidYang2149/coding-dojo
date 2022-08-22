@@ -21,17 +21,34 @@ function solution(n) {
   /*
   문제 풀이 계획
   - 설명을 그대로 로직으로 구현한다
+  - 배열의 가장 앞쪽이 제일 위(상단): 
+  - 배열의 가장 마지막이 제일 아래(바닥)
   */
 
   // 1. 카드 배열 만들기
+  const cardArray = [];
 
-  // 2. 카드 버리기
+  for (let i = 1; i <= n; i++) {
+    cardArray.push(i);
+  }
 
-  // 3. 카드를 맨 밑으로 넣기
+  while (true) {
+    // 2. 카드 버리기
+    cardArray.shift();
 
-  // 4. 카드가 한장 남았는지 확인하기
+    // 3. 카드를 맨 밑으로 넣기
+    const topOfCard = cardArray.shift();
+    cardArray.push(topOfCard);
 
-  // 5. 2번으로 돌아가서 반복하기
+    // 4. 카드가 한장 남았는지 확인하기
+    if (cardArray.length === 1 ) {
+      break;
+    }
+  
+    // 5. 2번으로 돌아가서 반복하기
+  }
+
+  return cardArray[0];
 }
 
 module.exports = solution;
