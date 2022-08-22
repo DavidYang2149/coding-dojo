@@ -1,4 +1,4 @@
-const { solution } = require('./index');
+const solution = require('./index');
 
 test('printer-queue', () => {
   expect(solution()).toBe(1);

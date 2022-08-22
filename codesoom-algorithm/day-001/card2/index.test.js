@@ -1,4 +1,4 @@
-const { solution } = require('./index');
+const solution = require('./index');
 
 test('card2', () => {
   expect(solution(6)).toBe(4);
