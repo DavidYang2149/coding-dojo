@@ -19,14 +19,25 @@ function solution(n, k) {
   /*
   계획: 배열로 선형 만들기, 그리고 순차적으로 밀어낸다
   */
-
-  // 1. (K - 1) 만큼 배열을 추출한다
-
-  // 2. 추출한 배열을 뒤로 보낸다
-
-  // 3. K 번째를 제거한다
+  const people = Array.from({ length: n }, (_, i) => i + 1);
+  const answer = [];
 
   // 4. 배열이 비어있을 때까지 반복한다
+  for (let i = 1; people.length !== 0; i++) {
+    if (i % k !== 0) {
+      // 1. (K - 1) 만큼 배열을 추출한다
+      const backToLinePeople = people.shift();
+      // 2. 추출한 배열을 뒤로 보낸다
+      people.push(backToLinePeople);
+    } else {
+      // 3. K 번째를 제거한다
+      const deathRow = people.shift();
+      answer.push(deathRow);
+    }
+  }
+
+  const result = `<${answer.join(', ')}>`;
+  return result;
 }
 
 module.exports = solution;
