@@ -25,20 +25,42 @@ function solution(n, m) {
   - 목표는 내가 알고 싶은 문서가 몇 번째로 인쇄되었는지를 확인하는 것
   - 인덱스는 0번째부터 N-1까지 있다
   - 배열 중에서 객체형으로 선언하기
-  - 객체의 구성은 다음과 같다 { id: 0 ~ N-1 , importance: 1 ~ 9, target: boolean }
+  - 객체의 구성은 다음과 같다 { id: 0 ~ N-1 , importance: 1 ~ 9, isTarget: boolean }
   */
 
-  // 1. 프린트 리스트 배열을 작성한다
+  const [length, targetPrint] = n.split(' ').map(x => Number.parseInt(x));
 
+  // 1. 프린트 리스트 배열을 작성한다
   // 2. 추적해야할 문서를 마킹한다
+  const printArray = m.split(' ').map((x, index) => { return { id: index, importance: Number.parseInt(x), isTarget: index === targetPrint } });
+  let result = 0;
 
   // 3. 프린트를 시작한다
-  // 3-1. 자신보다 중요도가 높은 프린트를 찾는다
-  // 3-2-1. 없으면 인쇄한다
-  // 3-2-1-1. 인쇄 후 인쇄 횟수를 증가시킨다
-  // 3-2-1-2. 인쇄된 문서가 내가 추적하던 문서인지 확인한다
-  // 3-2-1-3. 추적하던 문서면 작업을 종료하고, 아니면 작업을 계속한다
-  // 3-2-2. 있으면 뒤로 밀어낸다
+  while (true) {
+    // 3-1. 자신보다 중요도가 높은 프린트를 찾는다
+    const isMoreImportance = printArray.some(print => printArray[0].importance < print.importance);
+
+    // 3-2-1. 있으면 뒤로 밀어낸다
+    if (isMoreImportance) {
+      const goBackToPrintLine = printArray.shift();
+      printArray.push(goBackToPrintLine);
+      continue;
+    }
+    
+    // 3-2-2. 없으면 인쇄한다
+    const printedDocument = printArray.shift();
+
+    // 3-2-2-1. 인쇄 후 인쇄 횟수를 증가시킨다
+    result += 1;
+
+    // 3-2-2-2. 인쇄된 문서가 내가 추적하던 문서인지 확인한다
+    // 3-2-2-3. 추적하던 문서면 작업을 종료하고, 아니면 작업을 계속한다
+    if (printedDocument.isTarget) {
+      break;
+    }
+  }
+
+  return result;
 }
 
 module.exports = solution;
